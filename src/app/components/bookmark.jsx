@@ -2,7 +2,7 @@ import React from 'react';
 
 const Bookmark = ({status, onToggleBookmark, id}) => {
     const classes = 'bi bi-bookmark-';
-    let statusClass = '';
+    let statusClass = 'heart';
     if (status) {
         statusClass = 'heart-fill';
     }
