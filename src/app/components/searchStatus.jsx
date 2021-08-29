@@ -1,8 +1,7 @@
 import React from 'react';
 
 const SearchStatus = ({length}) => {
-    let phrase = '';
-    phrase = (length > 4 || length === 1)
+    let phrase = (length > 4 || length === 1)
         ? ' человек тусанет'
         : ' человека тусанут';
     return (

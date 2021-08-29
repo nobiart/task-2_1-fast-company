@@ -5,8 +5,6 @@ const Bookmark = ({status, onToggleBookmark, id}) => {
     let statusClass = '';
     if (status) {
         statusClass = 'heart-fill';
-    } else {
-        statusClass = 'heart';
     }
     return (
         <button className="btn" onClick={() => onToggleBookmark(id)}>
