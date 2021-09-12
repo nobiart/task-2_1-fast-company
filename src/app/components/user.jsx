@@ -21,8 +21,7 @@ const User = ({
                 {qualities.map((quality) => (
                     <Quality
                         key={quality._id}
-                        color={quality.color}
-                        name={quality.name}
+                        {...quality}
                     />
                 ))}
             </td>
@@ -31,9 +30,8 @@ const User = ({
             <td>{rate}/5</td>
             <td>
                 <Bookmark
-                    id={_id}
-                    onToggleBookmark={onToggleBookmark}
                     status={status}
+                    onClick={() => onToggleBookmark(_id)}
                 />
             </td>
             <td>
