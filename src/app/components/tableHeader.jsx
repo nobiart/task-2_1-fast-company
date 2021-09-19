@@ -15,6 +15,17 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
             });
         }
     };
+    const handleSortIcon = (item) => {
+        if (selectedSort.path === item) {
+            if (selectedSort.order === 'asc') {
+                return <i className="bi bi-caret-up-fill">&nbsp;</i>;
+            } else if (selectedSort.order === 'desc') {
+                return <i className="bi bi-caret-down-fill">&nbsp;</i>;
+            }
+        } else {
+            return null;
+        }
+    };
     return (
         <thead>
             <tr>
@@ -30,6 +41,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         scope="col"
                     >
                         {columns[column].name}
+                        {handleSortIcon(columns[column].path)}
                     </th>
                 ))}
             </tr>
