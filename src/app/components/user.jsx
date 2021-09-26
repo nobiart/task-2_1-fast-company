@@ -1,60 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Quality from './quality';
-import Bookmark from './bookmark';
+import { useHistory } from 'react-router-dom';
+import QualitiesList from './qualitiesList';
 
-const User = ({
-    _id,
-    name,
-    qualities,
-    profession,
-    completedMeetings,
-    rate,
-    onDelete,
-    onToggleBookmark,
-    status
-}) => {
+const User = ({ _id, users }) => {
+    const history = useHistory();
+    const handleSave = () => {
+        history.push('/users');
+    };
+    const getUserById = (id) => {
+        return users.find((user) => user._id === id);
+    };
+    const user = getUserById(_id);
     return (
-        <tr key={_id}>
-            <td>{name}</td>
-            <td>
-                {qualities.map((quality) => (
-                    <Quality
-                        key={quality._id}
-                        {...quality}
-                    />
-                ))}
-            </td>
-            <td>{profession.name}</td>
-            <td>{completedMeetings}</td>
-            <td>{rate}/5</td>
-            <td>
-                <Bookmark
-                    status={status}
-                    onClick={() => onToggleBookmark(_id)}
-                />
-            </td>
-            <td>
-                <button
-                    onClick={() => onDelete(_id)}
-                    className="btn btn-danger btn-sm"
-                >
-                    Delete
-                </button>
-            </td>
-        </tr>
+        <>
+            {user
+                ? (
+                    <div className="m-3">
+                        <h2>{user.name}</h2>
+                        <h3>Профессия: {user.profession.name}</h3>
+                        <div className="mb-2">
+                            <QualitiesList qualities={user.qualities} />
+                        </div>
+                        <h4>Завершено встреч: {user.completedMeetings}</h4>
+                        <h5>Оценка: {user.rate}/5</h5>
+                        <button
+                            onClick={() => {
+                                handleSave();
+                            }}
+                        >
+                            Все пользователи
+                        </button>
+                    </div>
+                )
+                : (
+                    <h3 className="m-3">Loading...</h3>
+                )}
+        </>
     );
 };
 User.propTypes = {
     _id: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    qualities: PropTypes.array.isRequired,
-    profession: PropTypes.object.isRequired,
-    completedMeetings: PropTypes.number.isRequired,
-    rate: PropTypes.number.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onToggleBookmark: PropTypes.func.isRequired,
-    status: PropTypes.bool
+    users: PropTypes.array
 };
 
 export default User;
