@@ -8,9 +8,9 @@ import SearchStatus from './searchStatus';
 import UsersTable from './usersTable';
 import _ from 'lodash';
 import { useParams } from 'react-router-dom';
-import User from './user';
+import UserPage from './userPage';
 
-const Users = () => {
+const UsersList = () => {
     const params = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfession] = useState();
@@ -72,7 +72,7 @@ const Users = () => {
             <>
                 { userId
                     ? (
-                        <User users={users} _id={userId}/>
+                        <UserPage users={users} _id={userId}/>
                     )
                     : (
                         <div className="d-flex">
@@ -118,8 +118,8 @@ const Users = () => {
     }
     return <h4 className="m-3">Loading...</h4>;
 };
-Users.propTypes = {
+UsersList.propTypes = {
     users: PropTypes.array
 };
 
-export default Users;
+export default UsersList;
