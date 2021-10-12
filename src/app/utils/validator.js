@@ -42,11 +42,10 @@ export function validator(data, config) {
                 data[fieldName],
                 config[fieldName][validateMethod]
             );
-            if (error && errors[fieldName]) {
+            if (error && !errors[fieldName]) {
                 errors[fieldName] = error;
             }
         }
     }
-    console.log(errors);
     return errors;
 }
