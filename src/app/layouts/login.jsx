@@ -40,19 +40,16 @@ const Login = () => {
         validate();
     }, [data]);
     const validate = () => {
-        console.log(data);
         const errors = validator(data, validatorConfig);
-        console.log(errors);
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
-    console.log(errors);
     const isValid = Object.keys(errors).length === 0;
     const handleSubmit = (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        console.log(11);
+        console.log(data);
     };
     return (
         <div className="container mt-5">
