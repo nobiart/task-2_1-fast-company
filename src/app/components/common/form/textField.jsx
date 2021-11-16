@@ -35,7 +35,7 @@ const TextField = ({ label, type, name, value, onChange, error }) => {
                             className={
                                 'bi bi-eye' + (showPassword ? '-slash' : '')
                             }
-                        ></i>
+                        />
                     </button>
                 )}
                 {error && <div className="invalid-feedback">{error}</div>}
