@@ -11,7 +11,7 @@ const UserPage = ({ userId }) => {
         API.users.getById(userId).then((data) => setUser(data));
     });
     const handleClick = () => {
-        history.push('/users');
+        history.push(`/users/${userId}/edit`);
     };
     if (user) {
         return (
@@ -23,7 +23,9 @@ const UserPage = ({ userId }) => {
                 </div>
                 <p>Завершенных встреч: {user.completedMeetings}</p>
                 <h2>Оценка: {user.rate}</h2>
-                <button onClick={handleClick}>Все пользователи</button>
+                <button className="btn btn-primary" type="button" onClick={handleClick}>
+                    Изменить
+                </button>
             </div>
         );
     } else {
