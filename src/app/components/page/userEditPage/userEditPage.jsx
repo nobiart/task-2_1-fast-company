@@ -97,7 +97,6 @@ const UserEditPage = ({ userId }) => {
                                         defaultOption="Choose..."
                                         options={professions}
                                         onChange={handleChange}
-                                        error={errors.profession}
                                     />
                                     <RadioField
                                         label="Change gender"
