@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import API from '../../../api';
-import Qualities from '../../ui/qualities';
 import SelectField from '../../common/form/selectField';
 import UserInfoCard from '../../ui/cards/userInfoCard';
+import QualitiesCard from '../../ui/cards/qualitiesCard';
 
 const UserPage = ({ userId }) => {
     const [data, setData] = useState({
@@ -30,24 +30,7 @@ const UserPage = ({ userId }) => {
             <div className="row gutters-sm">
                 <div className="col-md-4 mb-3">
                     <UserInfoCard userId={userId} />
-                    <div className="card mb-3">
-                        <div
-                            className="
-                                card-body
-                                d-flex
-                                flex-column
-                                justify-content-center
-                                text-center
-                            "
-                        >
-                            <h5 className="card-title">
-                                <span>Qualities</span>
-                            </h5>
-                            <p className="card-text">
-                                <Qualities qualities={user.qualities} />
-                            </p>
-                        </div>
-                    </div>
+                    <QualitiesCard userId={userId} />
                     <div className="card mb-3">
                         <div
                             className="
