@@ -18,7 +18,7 @@ const UserEditPage = ({ userId }) => {
         API.users.getById(userId).then((data) => setUser(data));
         API.professions.fetchAll().then((data) => setProfession(data));
         API.qualities.fetchAll().then((data) => setQualities(data));
-    });
+    }, []);
     const handleChange = (target) => {
         setUser((prevState) => ({
             ...prevState,
@@ -43,11 +43,6 @@ const UserEditPage = ({ userId }) => {
             isEmail: {
                 message: 'This field requires an email value'
             }
-        },
-        profession: {
-            isRequired: {
-                message: 'Profession is required'
-            }
         }
     };
     const isValid = Object.keys(errors).length === 0;
@@ -56,11 +51,19 @@ const UserEditPage = ({ userId }) => {
     }, [user]);
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const isValid = validate();
-        // if (!isValid) return;
+        user.qualities = Object.values(qualities).filter((quality) =>
+            user.qualities.map((quality) => quality.value).includes(quality._id)
+        );
+        for (const profession in professions) {
+            if (professions[profession]._id === user.profession) {
+                user.profession = professions[profession];
+            }
+        }
+        const isValid = validate();
+        if (!isValid) return;
         console.log('user', user);
         API.users.update(userId, user);
-        history.replace('/users');
+        history.replace(`/users/${userId}`);
     };
     return (
         <div className="container mt-3">
@@ -121,7 +124,7 @@ const UserEditPage = ({ userId }) => {
                                         onChange={handleChange}
                                     />
                                     <button
-                                        type="button"
+                                        type="submit"
                                         className="btn btn-success w-100"
                                         disabled={!isValid}
                                     >
