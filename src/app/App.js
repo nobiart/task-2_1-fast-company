@@ -9,12 +9,14 @@ const App = () => {
     return (
         <>
             <NavBar />
-            <Switch>
-                <Route path="/" exact component={Main} />
-                <Route path="/login/:type?" component={Login} />
-                <Route path="/users/:userId?/:edit?" component={Users} />
-                <Redirect to="/" />
-            </Switch>
+            <div className="container">
+                <Switch>
+                    <Route path="/" exact component={Main} />
+                    <Route path="/login/:type?" component={Login} />
+                    <Route path="/users/:userId?/:edit?" component={Users} />
+                    <Redirect to="/" />
+                </Switch>
+            </div>
         </>
     );
 };
