@@ -4,6 +4,7 @@ import API from '../../../api';
 import SelectField from '../../common/form/selectField';
 import UserInfoCard from '../../ui/cards/userInfoCard';
 import QualitiesCard from '../../ui/cards/qualitiesCard';
+import MeetingsCard from '../../ui/cards/meetingsCard';
 
 const UserPage = ({ userId }) => {
     const [data, setData] = useState({
@@ -31,25 +32,7 @@ const UserPage = ({ userId }) => {
                 <div className="col-md-4 mb-3">
                     <UserInfoCard userId={userId} />
                     <QualitiesCard userId={userId} />
-                    <div className="card mb-3">
-                        <div
-                            className="
-                                card-body
-                                d-flex
-                                flex-column
-                                justify-content-center
-                                text-center
-                            "
-                        >
-                            <h5 className="card-title">
-                                <span>Completed meetings</span>
-                            </h5>
-
-                            <h1 className="display-1">
-                                {user.completedMeetings}
-                            </h1>
-                        </div>
-                    </div>
+                    <MeetingsCard userId={userId} />
                 </div>
                 <div className="col-md-8">
                     <div className="card mb-2">
