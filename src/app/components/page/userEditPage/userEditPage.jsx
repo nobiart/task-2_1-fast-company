@@ -62,8 +62,7 @@ const UserEditPage = ({ userId }) => {
         const isValid = validate();
         if (!isValid) return;
         console.log('user', user);
-        API.users.update(userId, user);
-        history.replace(`/users/${userId}`);
+        API.users.update(userId, user).then((data) => history.push(`/users/${data._id}`));
     };
     return (
         <div className="container mt-3">
