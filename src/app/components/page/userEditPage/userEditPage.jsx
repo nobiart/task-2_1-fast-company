@@ -20,10 +20,31 @@ const UserEditPage = ({ userId }) => {
         API.qualities.fetchAll().then((data) => setQualities(data));
     }, []);
     const handleChange = (target) => {
-        setUser((prevState) => ({
-            ...prevState,
-            [target.name]: target.value
-        }));
+        if (target) {
+            let { name, value } = target;
+            if (name === 'profession') {
+                Object.keys(professions).forEach((profession) => {
+                    if (professions[profession]._id === value) {
+                        value = professions[profession];
+                    }
+                });
+            }
+            if (name === 'qualities') {
+                const newQualities = [];
+                Object.keys(qualities).forEach(quality => {
+                    value.forEach(val => {
+                        if (qualities[quality]._id === val.value) {
+                            newQualities.push(qualities[quality]);
+                        }
+                    });
+                });
+                value = newQualities;
+            }
+            setUser((prevState) => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
     };
     const validate = () => {
         const errors = validator(user, validatorConfig);
@@ -51,18 +72,13 @@ const UserEditPage = ({ userId }) => {
     }, [user]);
     const handleSubmit = (e) => {
         e.preventDefault();
-        user.qualities = Object.values(qualities).filter((quality) =>
-            user.qualities.map((quality) => quality.value).includes(quality._id)
-        );
-        for (const profession in professions) {
-            if (professions[profession]._id === user.profession) {
-                user.profession = professions[profession];
-            }
-        }
         const isValid = validate();
         if (!isValid) return;
         console.log('user', user);
-        API.users.update(userId, user).then((data) => history.push(`/users/${data._id}`));
+        API.users
+            .update(userId, user)
+            .then((data) => setUser(data));
+        history.push(`/users/${userId}`);
     };
     return (
         <div className="container mt-3">
@@ -109,18 +125,20 @@ const UserEditPage = ({ userId }) => {
                                         name="sex"
                                         onChange={handleChange}
                                     />
-                                    <MultiSelectField
-                                        defaultValue={user.qualities.map(
-                                            (quality) => ({
-                                                label: quality.name,
-                                                value: quality._id
-                                            })
-                                        )}
-                                        label="Change qualities"
-                                        options={qualities}
-                                        name="qualities"
-                                        onChange={handleChange}
-                                    />
+                                    {user.qualities &&
+                                        <MultiSelectField
+                                            defaultValue={user.qualities.map(
+                                                (quality) => ({
+                                                    label: quality.name,
+                                                    value: quality._id
+                                                })
+                                            )}
+                                            label="Change qualities"
+                                            options={qualities}
+                                            name="qualities"
+                                            onChange={handleChange}
+                                        />
+                                    }
                                     <button
                                         type="submit"
                                         className="btn btn-success w-100"
