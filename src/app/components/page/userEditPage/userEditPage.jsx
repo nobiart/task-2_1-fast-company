@@ -77,8 +77,8 @@ const UserEditPage = ({ userId }) => {
         console.log('user', user);
         API.users
             .update(userId, user)
-            .then((data) => setUser(data));
-        history.push(`/users/${userId}`);
+            .then((data) => setUser(data))
+            .then((data) => history.push(`/users/${userId}`));
     };
     return (
         <div className="container mt-3">
