@@ -78,10 +78,17 @@ const UserEditPage = ({ userId }) => {
         API.users
             .update(userId, user)
             .then((data) => setUser(data))
-            .then((data) => history.push(`/users/${userId}`));
+            .then(() => history.push(`/users/${userId}`));
+    };
+    const handleBack = () => {
+        history.push(`/users/${userId}`);
     };
     return (
         <div className="container mt-3">
+            <button className="btn btn-primary my-4" onClick={handleBack}>
+                <i className="bi bi-caret-left"/>
+                Back
+            </button>
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="shadow p-4">
