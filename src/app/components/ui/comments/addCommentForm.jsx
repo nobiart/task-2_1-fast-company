@@ -5,11 +5,12 @@ import API from '../../../api';
 import TextAreaField from '../../common/form/textAreaField';
 import { validator } from '../../../utils/validator';
 
-function AddCommentForm({ userId, onSubmit }) {
-    const [data, setData] = useState({
+function AddCommentForm({ onSubmit }) {
+    const initialState = {
         userId: '',
         content: ''
-    });
+    };
+    const [data, setData] = useState(initialState);
     const [users, setUsers] = useState();
     const [errors, setErrors] = useState({});
     useEffect(() => {
@@ -47,6 +48,7 @@ function AddCommentForm({ userId, onSubmit }) {
         const isValid = validate();
         if (!isValid) return;
         onSubmit(data);
+        setData(initialState);
     };
     return (
         <div className="card mb-2">
@@ -83,8 +85,7 @@ function AddCommentForm({ userId, onSubmit }) {
 }
 
 AddCommentForm.propTypes = {
-    userId: PropTypes.string,
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func.isRequired
 };
 
 export default AddCommentForm;

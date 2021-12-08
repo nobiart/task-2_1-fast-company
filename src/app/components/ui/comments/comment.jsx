@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import API from '../../../api';
+import formatDate from '../../../utils/formatDate';
 
-function Comment({ userId, content, createdAt }) {
+function Comment({ id, userId, content, createdAt, onRemove }) {
     const [user, setUser] = useState();
     useEffect(() => {
         API.users.getById(userId).then((data) => setUser(data));
     }, []);
+    const handleRemove = (id) => {
+        onRemove(id);
+    };
     if (user) {
         return (
             <div className="bg-light card-body mb-3">
@@ -40,7 +44,7 @@ function Comment({ userId, content, createdAt }) {
                                         <p className="mb-1">
                                             {user.name}
                                             <span className="small ms-2">
-                                                {createdAt}
+                                                {formatDate(createdAt)}
                                             </span>
                                         </p>
                                         <button
@@ -50,6 +54,7 @@ function Comment({ userId, content, createdAt }) {
                                             d-flex
                                             align-items-center
                                         "
+                                            onClick={() => handleRemove(id)}
                                         >
                                             <i className="bi bi-x-lg"/>
                                         </button>
@@ -70,9 +75,11 @@ function Comment({ userId, content, createdAt }) {
 }
 
 Comment.propTypes = {
+    id: PropTypes.string,
     userId: PropTypes.string,
     content: PropTypes.string,
-    createdAt: PropTypes.string
+    createdAt: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    onRemove: PropTypes.func
 };
 
 export default Comment;
