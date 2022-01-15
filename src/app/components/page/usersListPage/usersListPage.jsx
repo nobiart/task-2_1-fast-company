@@ -9,6 +9,7 @@ import UsersTable from '../../ui/usersTable';
 import _ from 'lodash';
 import { useParams } from 'react-router-dom';
 import UserPage from '../userPage';
+import { useUser } from '../../../hooks/useUsers';
 
 const UsersListPage = () => {
     const params = useParams();
@@ -16,23 +17,22 @@ const UsersListPage = () => {
     const [professions, setProfession] = useState();
     const [selectedProf, setSelectedProf] = useState();
     const [sortBy, setSortBy] = useState({ path: 'name', order: 'asc' });
-    const [users, setUsers] = useState();
     const [searchValue, setSearchValue] = useState('');
-    useEffect(() => {
-        API.users.fetchAll().then((data) => setUsers(data));
-    }, []);
+    const { users } = useUser();
+    console.log(users);
     const handleDelete = (userId) => {
-        setUsers(users.filter((user) => user._id !== userId));
+        // setUsers(users.filter((user) => user._id !== userId));
+        console.log(userId);
     };
     const handleToggleBookmark = (id) => {
-        setUsers(
-            users.map((user) => {
-                if (user._id === id) {
-                    return { ...user, status: !user.status };
-                }
-                return user;
-            })
-        );
+        const newArray = users.map((user) => {
+            if (user._id === id) {
+                return { ...user, status: !user.status };
+            }
+            return user;
+        });
+        // setUsers(newArray);
+        console.log(newArray);
     };
     const pageSize = 8;
     useEffect(() => {
