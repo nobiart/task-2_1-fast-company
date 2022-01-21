@@ -1,22 +1,18 @@
 import React from 'react';
 import Quality from './quality';
-import { useQualities } from '../../../hooks/useQuality';
+import { useQualities } from '../../../hooks/useQualities';
 import PropTypes from 'prop-types';
 
 const QualitiesList = ({ qualities }) => {
-    const { allQualities, isLoading } = useQualities();
-    const userQualities = allQualities.filter((q) => qualities.includes(q._id));
-    if (!isLoading) {
-        return (
-            <>
-                {userQualities.map((quality) => (
-                    <Quality key={quality._id} {...quality} />
-                ))}
-            </>
-        );
-    } else {
-        return 'Loading...';
-    }
+    const { isLoading } = useQualities();
+    if (isLoading) return 'Loading...';
+    return (
+        <>
+            {qualities.map((quality) => (
+                <Quality key={quality} id={quality} />
+            ))}
+        </>
+    );
 };
 
 QualitiesList.propTypes = {
