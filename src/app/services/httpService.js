@@ -8,8 +8,7 @@ axios.interceptors.request.use(
     function (config) {
         if (configFile.isFireBase) {
             const containSlash = /\/$/gi.test(config.url);
-            config.url =
-                (containSlash ? config.url.slice(0, -1) : config.url) + '.json';
+            config.url = (containSlash ? config.url.slice(0, -1) : config.url) + '.json';
         }
         return config;
     },
@@ -35,9 +34,7 @@ axios.interceptors.response.use(
     },
     function (error) {
         const expectedErrors =
-            error.response &&
-            error.response.status >= 400 &&
-            error.response.status <= 500;
+            error.response && error.response.status >= 400 && error.response.status <= 500;
         if (!expectedErrors) {
             console.log(error);
             toast.error('Something went wrong');

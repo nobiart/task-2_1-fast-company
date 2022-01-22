@@ -22,10 +22,7 @@ function RadioField({ label, options, name, onChange, value }) {
                         value={option.value}
                         onChange={handleChange}
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor={option.name + '_' + option.value}
-                    >
+                    <label className="form-check-label" htmlFor={option.name + '_' + option.value}>
                         {option.name}
                     </label>
                 </div>

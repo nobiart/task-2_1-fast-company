@@ -7,11 +7,13 @@ export default function formatDate(date) {
         if (diffDay === 0) {
             const diffHour = nowDate.getHours() - postDate.getHours();
             if (diffHour === 0) {
-                const diffMinutes =
-                    nowDate.getMinutes() - postDate.getMinutes();
-                if (diffMinutes >= 0 && diffMinutes < 5) return '1 minute ago';
-                if (diffMinutes >= 5 && diffMinutes < 10)
+                const diffMinutes = nowDate.getMinutes() - postDate.getMinutes();
+                if (diffMinutes >= 0 && diffMinutes < 5) {
+                    return '1 minute ago';
+                }
+                if (diffMinutes >= 5 && diffMinutes < 10) {
                     return '5 minutes ago';
+                }
                 if (diffMinutes >= 10 && diffMinutes < 30) {
                     return '10 minutes ago';
                 }
@@ -23,7 +25,5 @@ export default function formatDate(date) {
             month: 'long'
         })}`;
     }
-    return `${postDate.getFullYear()}.${
-        postDate.getMonth() + 1
-    }.${postDate.getDate()}`;
+    return `${postDate.getFullYear()}.${postDate.getMonth() + 1}.${postDate.getDate()}`;
 }

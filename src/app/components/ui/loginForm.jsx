@@ -75,18 +75,10 @@ const LoginForm = () => {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <CheckBoxField
-                value={data.stayOn}
-                onChange={handleChange}
-                name="stayOn"
-            >
+            <CheckBoxField value={data.stayOn} onChange={handleChange} name="stayOn">
                 Оставаться в системе
             </CheckBoxField>
-            <button
-                type="submit"
-                disabled={!isValid}
-                className="btn btn-primary w-100 mx-auto"
-            >
+            <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
                 Submit
             </button>
         </form>

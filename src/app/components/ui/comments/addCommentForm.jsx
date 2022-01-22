@@ -71,11 +71,7 @@ function AddCommentForm({ onSubmit }) {
                         onChange={handleChange}
                         error={errors.content}
                     />
-                    <button
-                        type="submit"
-                        className="btn btn-primary"
-                        disabled={!isValid}
-                    >
+                    <button type="submit" className="btn btn-primary" disabled={!isValid}>
                         Publish
                     </button>
                 </form>

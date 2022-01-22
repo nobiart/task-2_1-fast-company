@@ -35,9 +35,7 @@ const fetchCommentsForUser = (userId) =>
     new Promise((resolve) => {
         window.setTimeout(function () {
             resolve(
-                JSON.parse(localStorage.getItem('comments')).filter(
-                    (c) => c.pageId === userId
-                )
+                JSON.parse(localStorage.getItem('comments')).filter((c) => c.pageId === userId)
             );
         }, 200);
     });

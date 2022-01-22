@@ -136,11 +136,7 @@ function RegisterForm() {
             >
                 Подтвердить <a>лицензионное соглашение</a>
             </CheckBoxField>
-            <button
-                type="submit"
-                disabled={!isValid}
-                className="btn btn-primary w-100 mx-auto"
-            >
+            <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
                 Submit
             </button>
         </form>

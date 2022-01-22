@@ -133,12 +133,10 @@ const UserEditPage = ({ userId }) => {
                                 />
                                 {user.qualities && (
                                     <MultiSelectField
-                                        defaultValue={user.qualities.map(
-                                            (quality) => ({
-                                                label: quality.name,
-                                                value: quality._id
-                                            })
-                                        )}
+                                        defaultValue={user.qualities.map((quality) => ({
+                                            label: quality.name,
+                                            value: quality._id
+                                        }))}
                                         label="Change qualities"
                                         options={qualities}
                                         name="qualities"

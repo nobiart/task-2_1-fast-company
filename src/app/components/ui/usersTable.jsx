@@ -6,21 +6,12 @@ import Table from '../common/table';
 import { Link } from 'react-router-dom';
 import Profession from './profession';
 
-const UsersTable = ({
-    users,
-    onSort,
-    selectedSort,
-    onToggleBookmark,
-    onDelete,
-    ...rest
-}) => {
+const UsersTable = ({ users, onSort, selectedSort, onToggleBookmark, onDelete, ...rest }) => {
     const columns = {
         name: {
             path: 'name',
             name: 'Имя',
-            component: (user) => (
-                <Link to={`/users/${user._id}`}>{user.name}</Link>
-            )
+            component: (user) => <Link to={`/users/${user._id}`}>{user.name}</Link>
         },
         qualities: {
             name: 'Качества',
@@ -39,31 +30,18 @@ const UsersTable = ({
             path: 'status',
             name: 'Избранное',
             component: (user) => (
-                <Bookmark
-                    status={user.status}
-                    onClick={() => onToggleBookmark(user._id)}
-                />
+                <Bookmark status={user.status} onClick={() => onToggleBookmark(user._id)} />
             )
         },
         delete: {
             component: (user) => (
-                <button
-                    onClick={() => onDelete(user._id)}
-                    className="btn btn-danger btn-sm"
-                >
+                <button onClick={() => onDelete(user._id)} className="btn btn-danger btn-sm">
                     Delete
                 </button>
             )
         }
     };
-    return (
-        <Table
-            onSort={onSort}
-            selectedSort={selectedSort}
-            columns={columns}
-            data={users}
-        />
-    );
+    return <Table onSort={onSort} selectedSort={selectedSort} columns={columns} data={users} />;
 };
 
 UsersTable.propTypes = {
