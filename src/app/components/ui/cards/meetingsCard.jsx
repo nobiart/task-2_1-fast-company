@@ -23,9 +23,7 @@ function MeetingsCard({ userId }) {
                         <span>Completed meetings</span>
                     </h5>
 
-                    <h1 className="display-1">
-                        {user.completedMeetings}
-                    </h1>
+                    <h1 className="display-1">{user.completedMeetings}</h1>
                 </div>
             </div>
         );

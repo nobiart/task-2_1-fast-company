@@ -59,15 +59,15 @@ const UsersListPage = () => {
     if (users) {
         const filteredUsers = searchValue
             ? users.filter((user) =>
-                user.name.toLowerCase().includes(searchValue.toLowerCase())
-            )
+                  user.name.toLowerCase().includes(searchValue.toLowerCase())
+              )
             : selectedProf
-                ? users.filter(
-                    (user) =>
-                        JSON.stringify(user.profession) ===
-                        JSON.stringify(selectedProf)
-                )
-                : users;
+            ? users.filter(
+                  (user) =>
+                      JSON.stringify(user.profession) ===
+                      JSON.stringify(selectedProf)
+              )
+            : users;
         const count = filteredUsers.length;
         const sortedUsers = _.orderBy(
             filteredUsers,
@@ -80,56 +80,55 @@ const UsersListPage = () => {
         };
         return (
             <>
-                {userId
-                    ? (
-                        <UserPage users={users} _id={userId} />)
-                    : (
-                        <div className="d-flex">
-                            {professions && (
-                                <div className="d-flex flex-column flex-shrink-0 p-3">
-                                    <GroupList
-                                        selectedItem={selectedProf}
-                                        items={professions}
-                                        onItemSelect={handleProfessionSelect}
-                                    />
-                                    <button
-                                        className="btn btn-secondary m-2"
-                                        onClick={clearFilter}
-                                    >
-                                        Очистить
-                                    </button>
-                                </div>
-                            )}
-                            <div className="d-flex flex-column">
-                                <SearchStatus length={count} />
-                                <input
-                                    type="text"
-                                    name="search"
-                                    id="search"
-                                    placeholder="Search..."
-                                    value={searchValue}
-                                    onChange={handleSearch}
+                {userId ? (
+                    <UserPage users={users} _id={userId} />
+                ) : (
+                    <div className="d-flex">
+                        {professions && (
+                            <div className="d-flex flex-column flex-shrink-0 p-3">
+                                <GroupList
+                                    selectedItem={selectedProf}
+                                    items={professions}
+                                    onItemSelect={handleProfessionSelect}
                                 />
-                                {count > 0 && (
-                                    <UsersTable
-                                        users={usersCrop}
-                                        onSort={handleSort}
-                                        selectedSort={sortBy}
-                                        onDelete={handleDelete}
-                                        onToggleBookmark={handleToggleBookmark}
-                                    />
-                                )}
-                                <div className="d-flex justify-content-center">
-                                    <Pagination
-                                        itemsCount={count}
-                                        pageSize={pageSize}
-                                        currentPage={currentPage}
-                                        onPageChange={handlePageChange}
-                                    />
-                                </div>
+                                <button
+                                    className="btn btn-secondary m-2"
+                                    onClick={clearFilter}
+                                >
+                                    Очистить
+                                </button>
+                            </div>
+                        )}
+                        <div className="d-flex flex-column">
+                            <SearchStatus length={count} />
+                            <input
+                                type="text"
+                                name="search"
+                                id="search"
+                                placeholder="Search..."
+                                value={searchValue}
+                                onChange={handleSearch}
+                            />
+                            {count > 0 && (
+                                <UsersTable
+                                    users={usersCrop}
+                                    onSort={handleSort}
+                                    selectedSort={sortBy}
+                                    onDelete={handleDelete}
+                                    onToggleBookmark={handleToggleBookmark}
+                                />
+                            )}
+                            <div className="d-flex justify-content-center">
+                                <Pagination
+                                    itemsCount={count}
+                                    pageSize={pageSize}
+                                    currentPage={currentPage}
+                                    onPageChange={handlePageChange}
+                                />
                             </div>
                         </div>
-                    )}
+                    </div>
+                )}
             </>
         );
     }

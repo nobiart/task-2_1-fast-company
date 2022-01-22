@@ -56,12 +56,10 @@ function Comment({ id, userId, content, createdAt, onRemove }) {
                                         "
                                             onClick={() => handleRemove(id)}
                                         >
-                                            <i className="bi bi-x-lg"/>
+                                            <i className="bi bi-x-lg" />
                                         </button>
                                     </div>
-                                    <p className="small mb-0">
-                                        {content}
-                                    </p>
+                                    <p className="small mb-0">{content}</p>
                                 </div>
                             </div>
                         </div>

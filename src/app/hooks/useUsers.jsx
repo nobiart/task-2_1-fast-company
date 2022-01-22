@@ -40,7 +40,7 @@ const UserProvider = ({ children }) => {
     }
     return (
         <UserContext.Provider value={{ users }}>
-            { !isLoading ? children : <h1>Loading...</h1> }
+            {!isLoading ? children : <h1>Loading...</h1>}
         </UserContext.Provider>
     );
 };
@@ -48,8 +48,8 @@ const UserProvider = ({ children }) => {
 UserProvider.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node]
-    )
+        PropTypes.node
+    ])
 };
 
 export default UserProvider;

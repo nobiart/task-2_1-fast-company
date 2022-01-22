@@ -20,7 +20,7 @@ const UserPage = ({ userId }) => {
                     <MeetingsCard userId={userId} />
                 </div>
                 <div className="col-md-8">
-                    <Comments userId={userId}/>
+                    <Comments userId={userId} />
                 </div>
             </div>
         );

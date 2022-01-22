@@ -24,7 +24,7 @@ function QualitiesCard({ userId }) {
                         <span>Qualities</span>
                     </h5>
                     <p className="card-text">
-                        <Qualities qualities={user.qualities}/>
+                        <Qualities qualities={user.qualities} />
                     </p>
                 </div>
             </div>

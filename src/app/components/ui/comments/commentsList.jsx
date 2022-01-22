@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import Comment from './comment';
 
 const CommentsList = ({ comments, onRemove }) => {
-    const sortedComments = comments.sort((a, b) => (
-        b.created_at - a.created_at
-    ));
+    const sortedComments = comments.sort((a, b) => b.created_at - a.created_at);
     return (
         <div className="card mb-3">
             <div className="card-body">

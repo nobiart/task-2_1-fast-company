@@ -45,7 +45,7 @@ export const QualitiesProvider = ({ children }) => {
                 isLoading
             }}
         >
-            { children }
+            {children}
         </QualitiesContext.Provider>
     );
 };
@@ -53,6 +53,6 @@ export const QualitiesProvider = ({ children }) => {
 QualitiesProvider.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node]
-    )
+        PropTypes.node
+    ])
 };

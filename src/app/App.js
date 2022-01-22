@@ -18,13 +18,16 @@ const App = () => {
                     <QualitiesProvider>
                         <ProfessionProvider>
                             <Route path="/login/:type?" component={Login} />
-                            <Route path="/users/:userId?/:edit?" component={Users} />
+                            <Route
+                                path="/users/:userId?/:edit?"
+                                component={Users}
+                            />
                         </ProfessionProvider>
                     </QualitiesProvider>
                     <Route path="/" exact component={Main} />
                     <Redirect to="/" />
                 </Switch>
-                <ToastContainer/>
+                <ToastContainer />
             </div>
         </>
     );

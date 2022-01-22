@@ -9,7 +9,9 @@ const Comments = () => {
     const { userId } = useParams();
     const [comments, setComments] = useState([]);
     useEffect(() => {
-        API.comments.fetchCommentsForUser(userId).then((data) => setComments(data));
+        API.comments
+            .fetchCommentsForUser(userId)
+            .then((data) => setComments(data));
     }, []);
     const handleSubmit = (data) => {
         API.comments
@@ -27,9 +29,9 @@ const Comments = () => {
     };
     return (
         <>
-            <AddCommentForm onSubmit={handleSubmit}/>
+            <AddCommentForm onSubmit={handleSubmit} />
             {comments.length > 0 && (
-                <CommentsList comments={comments} onRemove={handleRemove}/>
+                <CommentsList comments={comments} onRemove={handleRemove} />
             )}
         </>
     );

@@ -40,8 +40,10 @@ export const ProfessionProvider = ({ children }) => {
         }
     }
     return (
-        <ProfessionContext.Provider value={{ isLoading, professions, getProfession }}>
-            { children }
+        <ProfessionContext.Provider
+            value={{ isLoading, professions, getProfession }}
+        >
+            {children}
         </ProfessionContext.Provider>
     );
 };
@@ -49,6 +51,6 @@ export const ProfessionProvider = ({ children }) => {
 ProfessionProvider.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node]
-    )
+        PropTypes.node
+    ])
 };

@@ -31,8 +31,8 @@ const UserEditPage = ({ userId }) => {
             }
             if (name === 'qualities') {
                 const newQualities = [];
-                Object.keys(qualities).forEach(quality => {
-                    value.forEach(val => {
+                Object.keys(qualities).forEach((quality) => {
+                    value.forEach((val) => {
                         if (qualities[quality]._id === val.value) {
                             newQualities.push(qualities[quality]);
                         }
@@ -86,78 +86,76 @@ const UserEditPage = ({ userId }) => {
     return (
         <div className="container mt-3">
             <button className="btn btn-primary my-4" onClick={handleBack}>
-                <i className="bi bi-caret-left"/>
+                <i className="bi bi-caret-left" />
                 Back
             </button>
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="shadow p-4">
                         <h2 className="mb-3">Edit User</h2>
-                        {user
-                            ? (
-                                <form onSubmit={handleSubmit}>
-                                    <TextField
-                                        label="Name"
-                                        id="name"
-                                        name="name"
-                                        value={user.name}
+                        {user ? (
+                            <form onSubmit={handleSubmit}>
+                                <TextField
+                                    label="Name"
+                                    id="name"
+                                    name="name"
+                                    value={user.name}
+                                    onChange={handleChange}
+                                    error={errors.name}
+                                />
+                                <TextField
+                                    label="Email"
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={user.email}
+                                    onChange={handleChange}
+                                    error={errors.email}
+                                />
+                                <SelectField
+                                    label="Select profession"
+                                    name="profession"
+                                    value={user.profession._id}
+                                    defaultOption="Choose..."
+                                    options={professions}
+                                    onChange={handleChange}
+                                />
+                                <RadioField
+                                    label="Change gender"
+                                    options={[
+                                        { name: 'Male', value: 'male' },
+                                        { name: 'Female', value: 'female' },
+                                        { name: 'Other', value: 'other' }
+                                    ]}
+                                    value={user.sex}
+                                    name="sex"
+                                    onChange={handleChange}
+                                />
+                                {user.qualities && (
+                                    <MultiSelectField
+                                        defaultValue={user.qualities.map(
+                                            (quality) => ({
+                                                label: quality.name,
+                                                value: quality._id
+                                            })
+                                        )}
+                                        label="Change qualities"
+                                        options={qualities}
+                                        name="qualities"
                                         onChange={handleChange}
-                                        error={errors.name}
                                     />
-                                    <TextField
-                                        label="Email"
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={user.email}
-                                        onChange={handleChange}
-                                        error={errors.email}
-                                    />
-                                    <SelectField
-                                        label="Select profession"
-                                        name="profession"
-                                        value={user.profession._id}
-                                        defaultOption="Choose..."
-                                        options={professions}
-                                        onChange={handleChange}
-                                    />
-                                    <RadioField
-                                        label="Change gender"
-                                        options={[
-                                            { name: 'Male', value: 'male' },
-                                            { name: 'Female', value: 'female' },
-                                            { name: 'Other', value: 'other' }
-                                        ]}
-                                        value={user.sex}
-                                        name="sex"
-                                        onChange={handleChange}
-                                    />
-                                    {user.qualities &&
-                                        <MultiSelectField
-                                            defaultValue={user.qualities.map(
-                                                (quality) => ({
-                                                    label: quality.name,
-                                                    value: quality._id
-                                                })
-                                            )}
-                                            label="Change qualities"
-                                            options={qualities}
-                                            name="qualities"
-                                            onChange={handleChange}
-                                        />
-                                    }
-                                    <button
-                                        type="submit"
-                                        className="btn btn-success w-100"
-                                        disabled={!isValid}
-                                    >
-                                        Update
-                                    </button>
-                                </form>)
-                            : (
-                                <h4 className="mt-3">Loading</h4>
-                            )
-                        }
+                                )}
+                                <button
+                                    type="submit"
+                                    className="btn btn-success w-100"
+                                    disabled={!isValid}
+                                >
+                                    Update
+                                </button>
+                            </form>
+                        ) : (
+                            <h4 className="mt-3">Loading</h4>
+                        )}
                     </div>
                 </div>
             </div>
