@@ -86,10 +86,9 @@ function RegisterForm() {
         if (!isValid) return;
         const newData = {
             ...data,
-            qualities: data.qualities.map((q) => q.value),
-            professions: data.profession.map((p) => p._id)
+            qualities: data.qualities.map((q) => q.value)
         };
-        console.log(newData);
+        console.log('newData', newData);
         signUp(newData);
     };
     return (
