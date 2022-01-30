@@ -23,11 +23,9 @@ const AuthProvider = ({ children }) => {
             const { data } = await httpAuth.post(url, { email, password, returnSecureToken: true });
             setTokens(data);
             createUser({ _id: data.localId, email, ...rest });
-            console.log(data);
         } catch (error) {
             errorCatcher(error);
             const { code, message } = error.response.data.error;
-            console.log('code', code, 'message', message);
             if (code === 400) {
                 if (message === 'EMAIL_EXISTS') {
                     const errorObject = {
