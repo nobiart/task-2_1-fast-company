@@ -80,7 +80,7 @@ function RegisterForm() {
         return Object.keys(errors).length === 0;
     };
     const isValid = Object.keys(errors).length === 0;
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
@@ -89,7 +89,11 @@ function RegisterForm() {
             qualities: data.qualities.map((q) => q.value)
         };
         console.log('newData', newData);
-        signUp(newData);
+        try {
+            await signUp(newData);
+        } catch (error) {
+            setErrors(error);
+        }
     };
     return (
         <form onSubmit={handleSubmit}>
