@@ -17,6 +17,7 @@ function RegisterForm() {
         password: '',
         profession: '',
         sex: 'male',
+        name: '',
         qualities: [],
         licence: false
     });
@@ -45,6 +46,15 @@ function RegisterForm() {
             },
             isEmail: {
                 message: 'This field requires an email value'
+            }
+        },
+        name: {
+            isRequired: {
+                message: 'Name is required'
+            },
+            min: {
+                message: 'Minimum 3 chars required',
+                value: 3
             }
         },
         password: {
@@ -107,6 +117,14 @@ function RegisterForm() {
                 value={data.email}
                 onChange={handleChange}
                 error={errors.email}
+            />
+            <TextField
+                label="Name"
+                id="name"
+                name="name"
+                value={data.name}
+                onChange={handleChange}
+                error={errors.name}
             />
             <TextField
                 label="Password"
